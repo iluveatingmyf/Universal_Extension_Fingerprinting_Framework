@@ -10,6 +10,19 @@ ___开启扩展测试单元___
 
 在void ExtensionService::EnableExtension中，将extension_id.c_str()记录在日志文件
 
+___DOM方法插桩___
+---------------
+#### GetElementById方法
++ 目录： /third_party/blink/renderer/core/dom/element.cc
++ 函数：void Element::SetInnerHTMLInternal
+'''
+fputs("[InnerHTML]",fp);
+          DVLOG(0) << "[InnerHTML]"<< html.Utf8();   
+          fputs(html.Utf8().c_str(),fp);
+          fputs("[to]",fp);
+          fputs("(type)",fp);
+          fputs(container->nodeName().Utf8().c_str(),fp);
+'''
 
 
 ___备注___
@@ -28,7 +41,7 @@ String executing_window = GetDocument().GetExecutionContext()->GetSecurityOrigin
  
 #### 日志记录功能 
  日志记录代码（注意 windows和macos不同，这里仅记录macos的方法）      
-       ```
+ ```
         FILE *fp = NULL;
         fp = fopen("[日志记录文件的绝对路径]","a+");
         if (fp != NULL)
@@ -47,5 +60,22 @@ String executing_window = GetDocument().GetExecutionContext()->GetSecurityOrigin
           Element* div_node =  RootNode().GetDocument().CreateRawElement(html_names::kDivTag);
           div_node->SetIdAttribute(element_id);
           GetDocument().body()->appendChild(div_node);
-          ```
-        
+ ```
+ 
+ ### 获取节点属性
+```
+       if (const auto* contain =DynamicTo<Element>(container)){
+            if(contain->GetClassAttribute()){
+              fputs("(class)",fp);
+              fputs(contain->GetClassAttribute().Utf8().c_str(), fp);
+            }
+            if(contain->GetIdAttribute()){
+              fputs("(id)",fp);
+              fputs(contain->GetIdAttribute().Utf8().c_str(), fp);
+            }
+            if(contain->GetNameAttribute()){
+              fputs("(name)",fp);
+              fputs(contain->GetNameAttribute().Utf8().c_str(), fp);
+            }    
+          }
+```
