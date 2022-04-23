@@ -11,6 +11,10 @@ ___开启扩展测试单元___
 
 ___DOM方法插桩___
 ---------------
+
+【注意】所有依据extension请求而新创建的元素，都会为其创建值为trigger的class属性，帮助区分真实的扩展行为
+
+
 #### GetElementById方法
 + 目录： /third_party/blink/renderer/core/dom/element.cc
 + 函数：void Element::SetInnerHTMLInternal
