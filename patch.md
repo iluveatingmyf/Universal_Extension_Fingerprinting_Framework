@@ -28,7 +28,8 @@ String executing_window = GetDocument().GetExecutionContext()->GetSecurityOrigin
  
 #### 日志记录功能 
  日志记录代码（注意 windows和macos不同，这里仅记录macos的方法）      
-       ```FILE *fp = NULL;
+       ```
+        FILE *fp = NULL;
         fp = fopen("[日志记录文件的绝对路径]","a+");
         if (fp != NULL)
         {
@@ -45,5 +46,6 @@ String executing_window = GetDocument().GetExecutionContext()->GetSecurityOrigin
           }
           Element* div_node =  RootNode().GetDocument().CreateRawElement(html_names::kDivTag);
           div_node->SetIdAttribute(element_id);
-          GetDocument().body()->appendChild(div_node);```
+          GetDocument().body()->appendChild(div_node);
+          ```
         
