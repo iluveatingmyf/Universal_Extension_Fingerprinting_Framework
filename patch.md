@@ -1,8 +1,7 @@
 ___扩展程序启动___
 ---------------
- [chromium本地存储路径]/src/out/Release/Chromium.app/Contents/MacOS/Chromium --no-sandbox
-
 使用--no-sandbox参数使日志能被记录到本地文件
+```[chromium本地存储路径]/src/out/Release/Chromium.app/Contents/MacOS/Chromium --no-sandbox```
 
 ___开启扩展测试单元___
 ---------------
@@ -15,14 +14,14 @@ ___DOM方法插桩___
 #### GetElementById方法
 + 目录： /third_party/blink/renderer/core/dom/element.cc
 + 函数：void Element::SetInnerHTMLInternal
-'''
+```
 fputs("[InnerHTML]",fp);
           DVLOG(0) << "[InnerHTML]"<< html.Utf8();   
           fputs(html.Utf8().c_str(),fp);
           fputs("[to]",fp);
           fputs("(type)",fp);
           fputs(container->nodeName().Utf8().c_str(),fp);
-'''
+```
 
 
 ___备注___
@@ -30,7 +29,6 @@ ___备注___
 
 #### 判断DOM活动上下文
 Node包括网页范围以及treescope范围（就是浏览器本身的），因此在判断是否记录dom变化时，可以通过以下代码判断执行环境是不是在网页内
-
 
 ```
 String executing_window = GetDocument().GetExecutionContext()->GetSecurityOrigin()->Domain();
@@ -62,7 +60,7 @@ String executing_window = GetDocument().GetExecutionContext()->GetSecurityOrigin
           GetDocument().body()->appendChild(div_node);
  ```
  
- ### 获取节点属性
+ #### 获取节点属性
 ```
        if (const auto* contain =DynamicTo<Element>(container)){
             if(contain->GetClassAttribute()){
