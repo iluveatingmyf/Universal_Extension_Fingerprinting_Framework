@@ -6,29 +6,29 @@ ___扩展程序启动___
 
 ___开启扩展测试单元___
 ---------------
-/chrome/browser/extensions/extension_service.cc
+#### /chrome/browser/extensions/extension_service.cc
 
-在void ExtensionService::EnableExtension中，将来extension_id.c_str()记录在日志文件
+在void ExtensionService::EnableExtension中，将extension_id.c_str()记录在日志文件
 
 
 
 ___备注___
 ---------------
 
+#### 判断DOM活动上下文
 Node包括网页范围以及treescope范围（就是浏览器本身的），因此在判断是否记录dom变化时，可以通过以下代码判断执行环境是不是在网页内
 
 
+```
 String executing_window = GetDocument().GetExecutionContext()->GetSecurityOrigin()->Domain();
  if (executing_window == "localhost"){
          [代码]
  }
+ ```
  
- 
- 日志记录代码（注意 windows和macos不同，这里仅记录macos的方法）
-       
-       
-       
-       `FILE *fp = NULL;
+#### 日志记录功能 
+ 日志记录代码（注意 windows和macos不同，这里仅记录macos的方法）      
+       ```FILE *fp = NULL;
         fp = fopen("[日志记录文件的绝对路径]","a+");
         if (fp != NULL)
         {
@@ -45,5 +45,5 @@ String executing_window = GetDocument().GetExecutionContext()->GetSecurityOrigin
           }
           Element* div_node =  RootNode().GetDocument().CreateRawElement(html_names::kDivTag);
           div_node->SetIdAttribute(element_id);
-          GetDocument().body()->appendChild(div_node);`
+          GetDocument().body()->appendChild(div_node);```
         
