@@ -9,6 +9,14 @@ ___开启扩展测试单元___
 
 在void ExtensionService::EnableExtension中，将extension_id.c_str()记录在日志文件
 
+___CSS分析方法插桩___
+---------------
+#### 强制实现 pseudo_state
++ 目录：/src/third_party/blink/renderer/core/css/selector.checker.cc
++ 位置：bool SelectorChecker::CheckPseudoClass 第三行
++ 代码：bool force_pseudo_state 的状态修改为true
+
+
 ___DOM方法插桩___
 ---------------
 
