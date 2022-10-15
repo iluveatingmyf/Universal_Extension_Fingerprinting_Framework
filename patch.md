@@ -2,7 +2,7 @@
 
 在添加代码时注意替换掉原来的日志文件路径（[本地路径]/extension.log），以及配置文件config.txt的路径。
 
-#### base/metrics/field_trial.cc
+#### 源代码路径：base/metrics/field_trial.cc
 + 添加位置：函数```void FieldTrialList::CreateTrialsFromCommandLine(const CommandLine& cmd_line, int fd_key)```内部
 + 功能说明：关闭页面验证
 ```
@@ -10,7 +10,7 @@
     \\DCHECK(result);
 ```
 
-#### chrome/browser/extensions/crx_installer.cc
+#### 源代码路径：chrome/browser/extensions/crx_installer.cc
 + 添加位置：文件开头
 + 功能说明： 头文件引用
 ```
@@ -48,7 +48,7 @@
 
 
 
-#### chrome/browser/extensions/extension_service.h
+#### 源代码路径：chrome/browser/extensions/extension_service.h
 + 添加位置：在本文件原定义的所有class之前
 + 功能说明： 添加一个日志类，由此记录每次开启测试的扩展程序ID。另此处对临界区的操作windows和mac可能有差异，若修改参考链接https://blog.csdn.net/huang714/article/details/109524692 ，以下所有的日志类都类似。
 
@@ -90,7 +90,7 @@
     };
 ```
 
-#### chrome/browser/extensions/extension_service.cc
+#### 源代码路径：chrome/browser/extensions/extension_service.cc
 + 添加位置：文件开头
 + 功能说明： 头文件引用
 ```
@@ -308,20 +308,20 @@ void FinLogger::LogExtensionID(const std::string& extension_id){
 ```
 
 
-#### /chrome/browser/extensions/extension_tab_util.cc
+#### 源代码路径：chrome/browser/extensions/extension_tab_util.cc
 + 修改说明1：```bool ExtensionTabUtil::OpenOptionsPageFromAPI ```函数，直接 return false
 
 + 修改说明2: 为了防止测试目标扩展程序时可能出现的，将honeysite导航到其他网页情况导致测试中断的情况，在```bool ExtensionTabUtil::PrepareURLForNavigation```末尾，倒数第三行（swap函数之前）添加代码```if(url!=GURL("http://localhost:3000")){return false;}```(如果honeysite URL不一致需要替换)
 
 + 修改说明3: 防止测试目标扩展程序时，可能出现自动打开新tab的情况```void ExtensionTabUtil::CreateTab```直接return
 
-### /chrome/browser/extensions/scripting_permissions_modifier.cc
+### 源代码路径：chrome/browser/extensions/scripting_permissions_modifier.cc
 + 修改说明1: 将```void ScriptingPermissionsModifier::GrantHostPermission(const GURL& url)```中的第一行```DCHECK(CanAffectExtension());```注释掉；
 
 + 修改说明2: 将```bool ScriptingPermissionsModifier::HasGrantedHostPermission```第一行的```DCHECK(CanAffectExtension());```注释掉；
 
 
-#### \chrome\browser\extensions\api\web_navigation\web_navigation_api_helpers.cc
+#### 源代码路径：chrome\browser\extensions\api\web_navigation\web_navigation_api_helpers.cc
 + 添加位置: 文件开头
 + 功能说明: 添加头文件
 ```
@@ -388,13 +388,13 @@ void FinLogger::LogExtensionID(const std::string& extension_id){
     }
 ```
 
-#### /chrome/browser/ui/views/tabs/tab_hover_card_bubble_view.cc
+#### 源代码路径：chrome/browser/ui/views/tabs/tab_hover_card_bubble_view.cc
 + 修改说明： 将```std::unique_ptr<views::View> CreateAlertView```函数的赋值         ```alert_state_label->SetVisible(true);```中的`true改为false，由此屏蔽测试过程中的弹窗
 
-#### /extensions/browser/api/management/management_api.cc
+#### 源代码路径：extensions/browser/api/management/management_api.cc
 + 修改说明：将 ```show_confirm_dialog |= !self_uninstall;``` 改为 ```show_confirm_dialog = false;``` 即可取消卸载拓展时弹出的确认窗口
 
-#### /third_party/blink/renderer/core/dom/container_node.h
+#### 源代码路径：third_party/blink/renderer/core/dom/container_node.h
 + 添加位置： 所有本文件class定义之前
 + 功能说明： 定义日志类别（之前定义的日志类无法跨文件调用，不太了解C++不确定问题出现在哪里，若有更好的方法烦请指正）。注意windows与mac对临界区处理的差异与前文提及的类似。
 ```
@@ -463,7 +463,7 @@ void FinLogger::LogExtensionID(const std::string& extension_id){
 ```
 
 
-#### /third_party/blink/renderer/core/dom/container_node.cc
+#### 源代码路径：third_party/blink/renderer/core/dom/container_node.cc
 + 添加位置： 所有本文件class定义之前
 + 功能说明： 定义日志类别（之前定义的日志类无法跨文件调用，不太了解C++不确定问题出现在哪里，若有更好的方法烦请指正）。注意windows与mac对临界区处理的差异与前文提及的类似。
 ```
@@ -1072,7 +1072,7 @@ void FinLogger::LogExtensionID(const std::string& extension_id){
 ```
 
 
-#### /third_party/blink/renderer/core/dom/element.h
+#### 源代码路径：third_party/blink/renderer/core/dom/element.h
 + 添加位置： 所有class定义之前
 + 功能说明： 定义日志类
 ```
@@ -1118,7 +1118,7 @@ void FinLogger::LogExtensionID(const std::string& extension_id){
     };
 ```
 
-#### /third_party/blink/renderer/core/dom/element.cc
+#### 源代码路径：third_party/blink/renderer/core/dom/element.cc
 + 添加位置： 所有class定义之前
 + 功能说明： 实例化日志类
 ```
@@ -1328,7 +1328,7 @@ void FinLogger::LogExtensionID(const std::string& extension_id){
 
 
 
-#### /third_party/blink/renderer/core/dom/node.h
+#### 源代码路径：third_party/blink/renderer/core/dom/node.h
 + 添加位置： 所有class定义之前
 + 功能说明： 定义文件类
 ```
@@ -1374,7 +1374,7 @@ void FinLogger::LogExtensionID(const std::string& extension_id){
     };
 ```
 
-#### /third_party/blink/renderer/core/dom/node.cc
+#### 源代码路径：third_party/blink/renderer/core/dom/node.cc
 + 添加位置： 所有class定义之前
 + 功能说明： 实例化日志类
 ```
@@ -1506,7 +1506,7 @@ if (this_node){
 
 
 
-#### /third_party/blink/renderer/core/dom/tree_scope.h
+#### 源代码路径：third_party/blink/renderer/core/dom/tree_scope.h
 + 添加位置： 所有class定义之前
 + 功能说明： 定义日志类
 ```
@@ -1559,7 +1559,7 @@ if (this_node){
 ```
 
 
-#### /third_party/blink/renderer/core/dom/tree_scope.cc
+#### 源代码路径：third_party/blink/renderer/core/dom/tree_scope.cc
 + 添加位置： 在本文件原定义的所有class之前
 + 功能说明： 实例化日志类
 ```
@@ -1653,14 +1653,14 @@ if (this_node){
     }
 ```
 
-#### /third_party/blink/renderer/core/editing/frame_caret.cc
+#### 源代码路径：third_party/blink/renderer/core/editing/frame_caret.cc
 + 添加位置： 函数```void FrameCaret::UpdateStyleAndLayoutIfNeeded() ```开头
 ```
     frame_->GetDocument()->UpdateStyleAndLayout(DocumentUpdateReason::kJavaScript);
 ```
 
 
-#### /third_party/blink/renderer/core/html/html_element.h
+#### 源代码路径：third_party/blink/renderer/core/html/html_element.h
 + 添加位置： 所有class定义之前
 + 功能说明： 定义日志类
 ```
@@ -1699,7 +1699,7 @@ if (this_node){
 ```
 
 
-#### /third_party/blink/renderer/core/dom/tree_scope.cc
+#### 源代码路径：third_party/blink/renderer/core/dom/tree_scope.cc
 + 添加位置： 在本文件原定义的所有class之前
 + 功能说明： 实例化日志类
 ```
