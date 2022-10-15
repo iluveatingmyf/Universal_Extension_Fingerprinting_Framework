@@ -1,5 +1,4 @@
 # Universal_Extension_Fingerprinting_Framework
-A universal extension fingerprinting framework
 请先查看 代码操作流程记录文档.md 文档了解完整测试逻辑。<br/>
 文件目录：
 + /Honeysite Honeysite启动目录
