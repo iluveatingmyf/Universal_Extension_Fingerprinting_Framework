@@ -21,8 +21,8 @@
 ```
 + 添加位置： ```CrxInstaller::CrxInstaller(base::WeakPtr<ExtensionService> service_weak, ...)```内部
 + 功能说明： 开启Chromium的静态安装功能，修改构造函数
-将```allow_silent_install_(false)```修改为```allow_silent_install_(true)```
-
+<br/>将```allow_silent_install_(false)```修改为```allow_silent_install_(true)```
+<br/>
 
 
 
