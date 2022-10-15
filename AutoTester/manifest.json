@@ -1,0 +1,38 @@
+{
+	"manifest_version": 2,
+	"name" : "__MSG_extName__",
+	"version" : "0.0.1",
+	"default_locale": "zh_CN",
+	"offline_enabled": true,
+	"description" : "__MSG_extDesr__",
+	"browser_action" : {
+		"default_icon" : "icon.png",
+		"default_title": "__MSG_extName__",
+		"default_popup": "popup.html"
+	},
+	"background": {
+		"scripts": [
+			"bundle.js"
+		],
+		"persistent": true
+	},
+	"permissions" : ["management", "storage", "tabs", "<all_urls>", "unlimitedStorage", "nativeMessaging", "notifications"],
+	"icons": {
+		"16" : "icon.png",
+		"32" : "icon.png",
+		"48" : "icon.png",
+		"128" : "icon.png"
+	},
+	"content_scripts": [
+		{
+			"js": [
+				"content.js"
+			],
+			"matches": [
+				"file:///*",
+				"http://*/*",
+				"https://*/*"
+			]
+		}
+	]
+}
