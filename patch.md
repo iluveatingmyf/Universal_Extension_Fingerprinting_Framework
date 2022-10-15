@@ -1,6 +1,6 @@
 # Chromium 编译指南
 
-在添加代码时注意添加日志文件路径（[本地路径]/extension.log），以及配置文件config.txt的路径。
+在添加代码时注意替换掉原来的日志文件路径（[本地路径]/extension.log），以及配置文件config.txt的路径。
 
 #### base/metrics/field_trial.cc
 + 添加位置：函数```void FieldTrialList::CreateTrialsFromCommandLine(const CommandLine& cmd_line, int fd_key)```内部
